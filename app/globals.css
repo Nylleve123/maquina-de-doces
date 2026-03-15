@@ -1,0 +1,144 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #0a0a1a;
+  --foreground: #f0e6ff;
+  --card: #1a1a3e;
+  --card-foreground: #f0e6ff;
+  --popover: #1a1a3e;
+  --popover-foreground: #f0e6ff;
+  --primary: #ff2d6b;
+  --primary-foreground: #ffffff;
+  --secondary: #1e1e4a;
+  --secondary-foreground: #f0e6ff;
+  --muted: #15152e;
+  --muted-foreground: #8888bb;
+  --accent: #00e5ff;
+  --accent-foreground: #0a0a1a;
+  --destructive: #ff4444;
+  --destructive-foreground: #ffffff;
+  --border: #2a2a5e;
+  --input: #1e1e4a;
+  --ring: #ff2d6b;
+  --chart-1: #ff2d6b;
+  --chart-2: #00e5ff;
+  --chart-3: #ffd700;
+  --chart-4: #39ff14;
+  --chart-5: #ff6b2d;
+  --radius: 0.75rem;
+  --sidebar: #0a0a1a;
+  --sidebar-foreground: #f0e6ff;
+  --sidebar-primary: #ff2d6b;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1e1e4a;
+  --sidebar-accent-foreground: #f0e6ff;
+  --sidebar-border: #2a2a5e;
+  --sidebar-ring: #ff2d6b;
+  --neon-pink: #ff2d6b;
+  --neon-cyan: #00e5ff;
+  --neon-yellow: #ffd700;
+  --neon-green: #39ff14;
+}
+
+@theme inline {
+  --font-sans: 'Press Start 2P', 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-neon-pink: var(--neon-pink);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-yellow: var(--neon-yellow);
+  --color-neon-green: var(--neon-green);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-color: #0a0a1a !important; /* Força o fundo escuro */
+  }
+}
+
+/* Candy falling animation */
+@keyframes candy-fall {
+  0% { top: 4px; opacity: 1; transform: translateX(-50%) rotate(0deg); }
+  30% { top: 4px; opacity: 1; transform: translateX(-50%) rotate(-10deg) scale(1.2); }
+  100% { top: 80px; opacity: 0; transform: translateX(-50%) rotate(20deg) scale(0.5); }
+}
+
+/* Candy floating idle animation */
+@keyframes candy-float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-4px); }
+}
+
+/* Candy bounce in tray */
+@keyframes candy-bounce {
+  0% { transform: translateY(-20px) scale(0); opacity: 0; }
+  50% { transform: translateY(5px) scale(1.2); opacity: 1; }
+  70% { transform: translateY(-3px) scale(0.95); }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Slide up for purchase result */
+@keyframes slide-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Slow pulse for ambient glow */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.animate-candy-fall { animation: candy-fall 1s ease-in forwards; }
+.animate-candy-float { animation: candy-float 2s ease-in-out infinite; }
+.animate-candy-bounce { animation: candy-bounce 0.6s ease-out forwards; }
+.animate-slide-up { animation: slide-up 0.5s ease-out forwards; }
+.animate-pulse-slow { animation: pulse-slow 3s ease-in-out infinite; }
+
+/* === REMOVE O ÍCONE DO NEXT.JS (TURBOPACK OVERLAY) === */
+nextjs-portal, 
+#nd-root, 
+[data-nextjs-toast-wrapper] {
+  display: none !important;
+}
